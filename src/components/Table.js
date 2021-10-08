@@ -2,6 +2,7 @@ import React from "react";
 import courses from "../courses"
 import Button from "./Button";
 import QrGenerator from "./QrGenerator";
+import './Table.css'
 
 export class Table extends React.PureComponent {
 
@@ -23,14 +24,15 @@ export class Table extends React.PureComponent {
         }
 
         return (
-            <div>
+            <div >
+
                 <br/>
                 <br/>
-                <input placeholder="הכניסו מספר קורס / שם קורס / שם מתרגל" size="50" onChange={(e) => this.onSearch(e.target.value)}></input>
+                <input className="input" placeholder=" מס׳ קורס / שם קורס / שם מתרגל" size="50" onChange={(e) => this.onSearch(e.target.value)}></input>
                 <br/>
                 <br/>
                 <br/>
-                <table >
+                <table className="table">
                     <thead>
                     <tr>
                         <th>ייבוא לאייפון/אייפד (לחיצה ארוכה על הקוד)</th>
