@@ -1,5 +1,6 @@
 import React from "react";
 import courses from "../courses"
+import Button from "./Button";
 
 export class Table extends React.PureComponent {
 
@@ -23,11 +24,11 @@ export class Table extends React.PureComponent {
             <div>
                 <br/>
                 <br/>
-                <input size="100" onChange={(e) => this.onSearch(e.target.value)}></input>
+                <input placeholder="הכניסו מספר קורס / שם קורס / שם מתרגל" size="100" onChange={(e) => this.onSearch(e.target.value)}></input>
                 <br/>
                 <br/>
                 <br/>
-                <table>
+                <table >
                     <thead>
                     <tr>
                         <th width="100">ייבוא ללוח השנה</th>
@@ -42,7 +43,7 @@ export class Table extends React.PureComponent {
                     {filteredCourses.map(course => (
                         <tr>
                             <td>
-                                <button>ייבא</button>
+                                <Button name={course.name} appointments={course.appointments}/>
                             </td>
                             <td>{course.appointments[0].directors[0]}</td>
                             <td width="150">{course.name}</td>
@@ -59,3 +60,18 @@ export class Table extends React.PureComponent {
 }
 
 export default Table
+
+// {
+//     'id': '0366-2010',
+//     'group': '01',
+//     'name': 'מבוא להסתברות',
+//     'notes': '',
+//     'faculty': 'מדעים מדויקים',
+//     'track': 'מתמטיקה',
+//     'complete': True,
+//     'appointments': [{'directors': ['ד"ר\xa0סלומקה\xa0בועז אברהם'],'type': 'שיעור', 'location': 'שרייבר מתמטי', 'room': '007', 'day': 2, 'start': '16:00:00', 'end': '17:00:00', 'semester': 1}, {'directors': ['ד"ר\xa0סלומקה\xa0בועז אברהם'], 'type': 'שיעור', 'location': 'שרייבר מתמטי', 'room': '007', 'day': 5, 'start': '14:00:00', 'end': '16:00:00', 'semester': 1}], 'links': {'סילבוס': 'https://www.ims.tau.ac.il/Tal/Syllabus/Syllabus_L.aspx?course=0366201001&year=2020', 'בחינה': 'https://www.ims.tau.ac.il/Bhina_L.aspx?kurs=03662010&kv=01&sem=20201', 'דרישות קדם': 'https://www.ims.tau.ac.il/Drishot_L.aspx?kurs=03662010&kv=01&sem=20201', 'Moodle': 'https://moodle.tau.ac.il/course/view.php?id=0366201001', 'רשימת תפוצה': 'http://listserv.tau.ac.il/archives/0366-2010-01.html'}, 'special_instruction': False, 'special_instruction_text': ''}
+
+// [
+//     {'directors': ['ד"ר\xa0סלומקה\xa0בועז אברהם'], 'type': 'שיעור', 'location': 'שרייבר מתמטי', 'room': '007', 'day': 2, 'start': '16:00:00', 'end': '17:00:00', 'semester': 1},
+//     {'directors': ['ד"ר\xa0סלומקה\xa0בועז אברהם'], 'type': 'שיעור', 'location': 'שרייבר מתמטי', 'room': '007', 'day': 5, 'start': '14:00:00', 'end': '16:00:00', 'semester': 1}
+// ]
