@@ -22,7 +22,6 @@ export class Button extends React.PureComponent {
         return(
             <div>
                 <button onClick={this.handleClick}>ייבא</button>
-                <div>{}</div>
             </div>
 
     )}

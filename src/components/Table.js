@@ -1,6 +1,7 @@
 import React from "react";
 import courses from "../courses"
 import Button from "./Button";
+import QrGenerator from "./QrGenerator";
 
 export class Table extends React.PureComponent {
 
@@ -31,6 +32,7 @@ export class Table extends React.PureComponent {
                 <table >
                     <thead>
                     <tr>
+                        <th>ייבוא לאייפון/אייפד (לחיצה ארוכה על הקוד)</th>
                         <th width="100">ייבוא ללוח השנה</th>
                         <th width="150">שם המרצה / מתרגל</th>
                         <th width="150">שם הקורס</th>
@@ -42,9 +44,8 @@ export class Table extends React.PureComponent {
                     <tbody>
                     {filteredCourses.map(course => (
                         <tr>
-                            <td>
-                                <Button name={course.name} appointments={course.appointments}/>
-                            </td>
+                            <td><QrGenerator name={course.name} appointments={course.appointments}/></td>
+                            <td><Button name={course.name} appointments={course.appointments}/></td>
                             <td>{course.appointments[0].directors[0]}</td>
                             <td width="150">{course.name}</td>
                             <td>{course.faculty}</td>
