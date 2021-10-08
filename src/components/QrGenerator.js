@@ -14,8 +14,6 @@ const QrGenerator = (props) => {
 
     return (
         <div>
-            <p>{text}</p>
-            <p>{props.appointments[0].directors[0]}</p>
             <img width="50" height="50" src={src} />
         </div>
     )
