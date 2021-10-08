@@ -15,7 +15,8 @@ export class Table extends React.PureComponent {
     }
 //
     render() {
-        let filteredCourses = courses.filter((course) => (course.name + course.id + course.appointments[0].directors[0] + course.id.slice(0, 4) + course.id.slice(5,9)).includes(this.state.search));
+        //line below show up to 15 courses. creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
+        let filteredCourses = courses.filter((course) => (course.name + course.id + course.appointments[0].directors[0] + course.id.slice(0, 4) + course.id.slice(5,9)).replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search));
         filteredCourses = filteredCourses.slice(0, 15)
         if (this.state.search == ''){
             filteredCourses = []
@@ -25,7 +26,7 @@ export class Table extends React.PureComponent {
             <div>
                 <br/>
                 <br/>
-                <input placeholder="הכניסו מספר קורס / שם קורס / שם מתרגל" size="100" onChange={(e) => this.onSearch(e.target.value)}></input>
+                <input placeholder="הכניסו מספר קורס / שם קורס / שם מתרגל" size="50" onChange={(e) => this.onSearch(e.target.value)}></input>
                 <br/>
                 <br/>
                 <br/>
@@ -33,7 +34,7 @@ export class Table extends React.PureComponent {
                     <thead>
                     <tr>
                         <th>ייבוא לאייפון/אייפד (לחיצה ארוכה על הקוד)</th>
-                        <th width="100">ייבוא ללוח השנה</th>
+                        <th width="100">ייבוא לאנדרואיד / ווינדוס</th>
                         <th width="150">שם המרצה / מתרגל</th>
                         <th width="150">שם הקורס</th>
                         <th width="100">פקולטה</th>
