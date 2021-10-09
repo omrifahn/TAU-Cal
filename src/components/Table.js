@@ -30,7 +30,6 @@ export class Table extends React.PureComponent {
 
         return (
             <div >
-
                 <br/>
                 <br/>
                 <input className="input" placeholder=" מס׳ קורס / שם קורס / שם מתרגל" size="50" onChange={(e) => this.onSearch(e.target.value)}></input>
@@ -40,10 +39,10 @@ export class Table extends React.PureComponent {
                 <table className="table">
                     <thead>
                     <tr>
-                        <th>ייבוא לאייפון/אייפד (לחיצה ארוכה על הקוד)</th>
-                        <th width="100">ייבוא לאנדרואיד / ווינדוס</th>
+                        <th width="100">ייבוא לאייפון/ אייפד <br/><small>לחיצה ארוכה על הקוד</small></th>
+                        <th width="100">יבוא<br/> <small>אנדרואיד/ ווינדוס/ מק</small></th>
                         <th width="150">שם המרצה / מתרגל</th>
-                        <th width="150">שם הקורס</th>
+                        <th width="200">שם הקורס</th>
                         <th width="100">פקולטה</th>
                         <th width="100">מס׳ קבוצה</th>
                         <th width="100">מס׳ קורס</th>
@@ -52,7 +51,13 @@ export class Table extends React.PureComponent {
                     <tbody>
                     {filteredCourses.map(course => (
                         <tr>
-                            <td><QrGenerator name={course.name} appointments={course.appointments}/></td>
+                            <td>
+                            {
+                                course.appointments.map( ap =>
+                                    <QrGenerator name={course.name} appointments={[ap]}/>
+                                )
+                            }
+                            </td>
                             <td><Button name={course.name} appointments={course.appointments}/></td>
                             <td>{course.appointments[0].directors[0]}</td>
                             <td width="150">{course.name}</td>
