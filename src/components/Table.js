@@ -3,6 +3,7 @@ import courses from "../courses"
 import Button from "./Button";
 import QrGenerator from "./QrGenerator";
 import './Table.css'
+import '../courses.json'
 
 export class Table extends React.PureComponent {
 
@@ -16,6 +17,9 @@ export class Table extends React.PureComponent {
     }
 
     render() {
+
+        let courses = require('../courses.json')
+
         //line below show up to 15 courses. creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
         let filteredCourses = courses.filter((course) => (course.name + course.id + course.appointments[0].directors[0] + course.id.slice(0, 4) + course.id.slice(5,9)).replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search));
         filteredCourses = filteredCourses.slice(0, 15)
