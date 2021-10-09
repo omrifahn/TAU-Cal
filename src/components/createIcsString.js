@@ -24,8 +24,8 @@ METHOD:PUBLISH
         let date = semesterStart.slice(0, 6) + String( parseInt(semesterStart.slice(6, 8)) + day) //first occurrence of appointment
 
         template += `BEGIN:VEVENT
-DTSTART:${date + "T" + start + "Z"}
-DTEND:${date + "T" + end + "Z"}
+DTSTART;TZID=Asia/Jerusalem:${date + "T" + start}
+DTEND;TZID=Asia/Jerusalem:${date + "T" + end}
 RRULE:FREQ=WEEKLY;UNTIL=${semesterEnd}
 DESCRIPTION:
 SEQUENCE:0
