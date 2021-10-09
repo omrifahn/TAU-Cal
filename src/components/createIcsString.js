@@ -15,7 +15,7 @@ METHOD:PUBLISH
 `
     for (let i = 0; i < appointments.length; i++) {
         if (appointments[i] == undefined || appointments[i].start == undefined){
-            return "nothing"
+            return "dont have data"
         }
         let day = appointments[i].day - 1
         let start = appointments[i].start.slice(0,2) + appointments[i].start.slice(3,5) + appointments[i].start.slice(6,8) //getting rid of ":"
