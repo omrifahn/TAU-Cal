@@ -1,6 +1,7 @@
 import React from "react";
 import courses from "../courses"
 import createIcsString from "./createIcsString";
+import google from './google_cal_icon.png'
 
 export class Button extends React.PureComponent {
     constructor(props) {
@@ -13,7 +14,7 @@ export class Button extends React.PureComponent {
         const file = new Blob([createIcsString(this.props)]);
         element.href = URL.createObjectURL(file);
         element.download = "myFile.ics";
-        document.body.appendChild(element); // Required for this to work in FireFox
+        // document.body.appendChild(element); // Required for this to work in FireFox
         element.click();
     }
 
@@ -22,6 +23,7 @@ export class Button extends React.PureComponent {
         return(
             <div>
                 <button onClick={this.handleClick}>ייבא</button>
+
             </div>
 
     )}

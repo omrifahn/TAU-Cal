@@ -4,6 +4,8 @@ import Button from "./Button";
 import QrGenerator from "./QrGenerator";
 import './Table.css'
 import '../courses.json'
+import google from "./google_cal_icon.png";
+import GoogleCal from "./GoogleCal";
 
 export class Table extends React.PureComponent {
 
@@ -39,8 +41,9 @@ export class Table extends React.PureComponent {
                 <table className="table">
                     <thead>
                     <tr>
-                        <th width="100">ייבוא לאייפון/ אייפד <br/><small>לחיצה ארוכה על הקוד</small></th>
-                        <th width="100">יבוא<br/> <small>אנדרואיד/ ווינדוס/ מק</small></th>
+                        <th width="100">יבוא למחשב</th>
+                        <th width="100">Google Cal</th>
+                        <th width="100">אייפון/ אייפד<br/><small>לחיצה ארוכה על הקוד</small></th>
                         <th width="150">שם המרצה / מתרגל</th>
                         <th width="200">שם הקורס</th>
                         <th width="100">פקולטה</th>
@@ -51,14 +54,10 @@ export class Table extends React.PureComponent {
                     <tbody>
                     {filteredCourses.map(course => (
                         <tr>
-                            <td>
-                            {
-                                course.appointments.map( ap =>
-                                    <QrGenerator name={course.name} appointments={[ap]}/>
-                                )
-                            }
-                            </td>
                             <td><Button name={course.name} appointments={course.appointments}/></td>
+                            <td>{ course.appointments.map( ap => <GoogleCal name={course.name} appointment={ap}/> ) }</td>
+
+                            <td>{ course.appointments.map( ap => <QrGenerator name={course.name} appointments={[ap]}/> ) }</td>
                             <td>{course.appointments[0].directors[0]}</td>
                             <td width="150">{course.name}</td>
                             <td>{course.faculty}</td>
