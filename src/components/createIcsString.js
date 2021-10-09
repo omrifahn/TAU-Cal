@@ -27,6 +27,8 @@ METHOD:PUBLISH
 DTSTART;TZID=Asia/Jerusalem:${date + "T" + start}
 DTEND;TZID=Asia/Jerusalem:${date + "T" + end}
 RRULE:FREQ=WEEKLY;UNTIL=${semesterEnd}
+LOCATION:${ appointments[i].location || appointments[i].room ? appointments[i].location + " | " + appointments[i].room : ""}
+
 DESCRIPTION:
 SEQUENCE:0
 STATUS:CONFIRMED
