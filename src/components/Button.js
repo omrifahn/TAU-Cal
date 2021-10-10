@@ -1,7 +1,5 @@
 import React from "react";
-import courses from "../courses"
 import createIcsString from "./createIcsString";
-import google from './google_cal_icon.png'
 
 export class Button extends React.PureComponent {
     constructor(props) {

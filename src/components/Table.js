@@ -1,17 +1,18 @@
 import React from "react";
-import courses from "../courses"
 import Button from "./Button";
 import QrGenerator from "./QrGenerator";
 import './Table.css'
 import '../courses.json'
-import google from "./google_cal_icon.png";
 import GoogleCal from "./GoogleCal";
 
 export class Table extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.state = {search:''}
+        this.state = {
+            search:'',
+            courses: require('../courses.json')
+        }
     }
 
     onSearch(value, newPage){
@@ -20,7 +21,7 @@ export class Table extends React.PureComponent {
 
     render() {
 
-        let courses = require('../courses.json')
+        let courses = this.state.courses
 
         //line below show up to 15 courses. creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
         // also check that its the first semester
@@ -43,7 +44,7 @@ export class Table extends React.PureComponent {
                     <tr>
                         <th width="100">יבוא למחשב</th>
                         <th width="100">Google Cal</th>
-                        <th width="100">אייפון/ אייפד<br/><small>לחיצה ארוכה על הקוד</small></th>
+                        <th width="100">iPhone / iPad<br/><small>לחיצה ארוכה על הקוד</small></th>
                         <th width="150">שם המרצה / מתרגל</th>
                         <th width="200">שם הקורס</th>
                         <th width="100">פקולטה</th>
