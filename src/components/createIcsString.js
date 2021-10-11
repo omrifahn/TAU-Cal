@@ -48,6 +48,8 @@ export default createIcsString
 
 
 
+//not inside:
+
 //DTSTAMP:20091130T213238Z
 // UID:1285935469767a7c7c1a9b3f0df8003a@yoursever.com
 // CREATED:20091130T213238Z

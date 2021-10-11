@@ -7,9 +7,9 @@ table {
 table thead tr {
     background-color: #009879;
     color: #ffffff;
-    text-align: right;
+    text-align: center;
     font-weight: bold;
-    border-bottom-left-radius: 10;
+    border-bottom-left-radius: 10px;
 }
 
 table th,
@@ -31,4 +31,9 @@ input{
     border-radius: 11px;
     font-size: 1.3em;
     width: 80%;
+}
+
+footer{
+    color: grey;
+
 }

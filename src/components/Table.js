@@ -32,7 +32,7 @@ export class Table extends React.PureComponent {
         }
 
         return (
-            <div >
+            <div>
                 <br/>
                 <br/>
                 <input className="input" placeholder=" מס׳ קורס / שם קורס / שם מתרגל" size="50" onChange={(e) => this.onSearch(e.target.value)}></input>
@@ -53,7 +53,8 @@ export class Table extends React.PureComponent {
                     </tr>
                     </thead>
                     <tbody>
-                    {filteredCourses.map(course => (
+                    {
+                        filteredCourses.map(course => (
                         <tr>
                             <td><Button name={course.name} appointments={course.appointments}/></td>
                             <td>{ course.appointments.map( ap => <GoogleCal name={course.name} appointment={ap}/> ) }</td>
@@ -68,6 +69,9 @@ export class Table extends React.PureComponent {
                     ))}
                     </tbody>
                 </table>
+                {
+                    (filteredCourses.length > 0) ? <div></div> : <div ><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
+                }
             </div>
         )
     }
