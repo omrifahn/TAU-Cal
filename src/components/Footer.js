@@ -17,6 +17,8 @@ export class Footer extends React.PureComponent {
                     <p>
                         Created by <a href={omri}>Omri Fahn</a> and wouldn't be possible without the help of <a href={ido}>Ido Weinstein</a> and <a href={ron}>Ron Peleg</a>.
                     </p>
+                    <p>If you want to say thanks you can <a href="https://www.paypal.com/donate?hosted_button_id=H96J86CSYA4VU">Donate with PayPal</a>.</p>
+
                     <p>TAU-Cal © 2021</p>
                 </footer >
             </div>

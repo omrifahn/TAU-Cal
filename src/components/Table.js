@@ -70,7 +70,9 @@ export class Table extends React.PureComponent {
                     </tbody>
                 </table>
                 {
-                    (filteredCourses.length > 0) ? <div></div> : <div ><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
+                    (filteredCourses.length > 0) ? <div></div> : <div >
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    </div>
                 }
             </div>
         )
