@@ -12,7 +12,6 @@ export class Button extends React.PureComponent {
         const file = new Blob([createIcsString(this.props)]);
         element.href = URL.createObjectURL(file);
         element.download = "myFile.ics";
-        // document.body.appendChild(element); // Required for this to work in FireFox
         element.click();
     }
 
@@ -21,7 +20,6 @@ export class Button extends React.PureComponent {
         return(
             <div>
                 <button onClick={this.handleClick}>ייבא</button>
-
             </div>
 
     )}

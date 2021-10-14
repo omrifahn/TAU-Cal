@@ -13,13 +13,16 @@ PRODID:-//bobbin v0.1//NONSGML iCal Writer//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 `
+
     for (let i = 0; i < appointments.length; i++) {
-        if (appointments[i] == undefined || appointments[i].start == undefined){
-            return "dont have data"
+        let ap = appointments[i]
+        if (ap == undefined || ap.start == undefined){
+            return "No data available"
         }
-        let day = appointments[i].day - 1
-        let start = appointments[i].start.slice(0,2) + appointments[i].start.slice(3,5) + appointments[i].start.slice(6,8) //getting rid of ":"
-        let end = appointments[i].end.slice(0,2) + appointments[i].end.slice(3,5) + appointments[i].end.slice(6,8)
+
+        let day = ap.day - 1
+        let start = ap.start.slice(0,2) + ap.start.slice(3,5) + ap.start.slice(6,8) //getting rid of ":"
+        let end = ap.end.slice(0,2) + ap.end.slice(3,5) + ap.end.slice(6,8)
 
         let date = semesterStart.slice(0, 6) + String( parseInt(semesterStart.slice(6, 8)) + day) //first occurrence of appointment
 
@@ -27,17 +30,16 @@ METHOD:PUBLISH
 DTSTART;TZID=Asia/Jerusalem:${date + "T" + start}
 DTEND;TZID=Asia/Jerusalem:${date + "T" + end}
 RRULE:FREQ=WEEKLY;UNTIL=${semesterEnd}
-LOCATION:${ appointments[i].location || appointments[i].room ? appointments[i].location + " | " + appointments[i].room : ""}
+LOCATION:${ ap.location || ap.room ? ap.location + " | " + ap.room : ""}
 
-DESCRIPTION:
+DESCRIPTION: ${ap.directors.map(dir => " " + dir)}
 SEQUENCE:0
 STATUS:CONFIRMED
-SUMMARY:${name + " | " + appointments[i].type}
+SUMMARY:${name + " | " + ap.type}
 TRANSP:OPAQUE
 END:VEVENT
 `
     }
-
 
     template += `END:VCALENDAR`
 

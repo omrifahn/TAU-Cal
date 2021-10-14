@@ -22,10 +22,13 @@ export class Table extends React.PureComponent {
     render() {
 
         let courses = this.state.courses
+        //the filter below creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
+        let filteredCourses = courses.filter( course =>
+            course.appointments[0].semester == 1 &&
+            (course.name + course.id + course.group + course.appointments[0].directors + course.id.slice(0, 4) + course.id.slice(5,9) + "-" + course.group)
+                .replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search)
+        );
 
-        //line below show up to 15 courses. creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
-        // also check that its the first semester
-        let filteredCourses = courses.filter((course) => (course.name + course.id + course.appointments[0].directors[0] + course.id.slice(0, 4) + course.id.slice(5,9)).replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search) && course.appointments[0].semester == 1);
         filteredCourses = filteredCourses.slice(0, 15)
         if (this.state.search == ''){
             filteredCourses = []
@@ -58,9 +61,8 @@ export class Table extends React.PureComponent {
                         <tr>
                             <td><Button name={course.name} appointments={course.appointments}/></td>
                             <td>{ course.appointments.map( ap => <GoogleCal name={course.name} appointment={ap}/> ) }</td>
-
                             <td>{ course.appointments.map( ap => <QrGenerator name={course.name} appointments={[ap]}/> ) }</td>
-                            <td>{course.appointments[0].directors[0]}</td>
+                            <td>{course.appointments[0].directors.map(dir => (<div>{dir}</div>))}</td>
                             <td width="150">{course.name}</td>
                             <td>{course.faculty}</td>
                             <td>{course.group}</td>
@@ -70,7 +72,7 @@ export class Table extends React.PureComponent {
                     </tbody>
                 </table>
                 {
-                    (filteredCourses.length > 0) ? <div></div> : <div >
+                    (filteredCourses.length > 0) ? <div><br/><br/></div> : <div>
                         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     </div>
                 }
