@@ -24,7 +24,7 @@ export class Table extends React.PureComponent {
         let courses = this.state.courses
         //the filter below creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
         let filteredCourses = courses.filter( course =>
-            course.appointments[0].semester == 1 &&
+            course.appointments[0].semester == 2 &&
             (course.name + course.id + "-" + course.group + course.appointments[0].directors + course.id.slice(0, 4) + course.id.slice(5,9) + course.group)
                 .replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search)
         );
