@@ -4,8 +4,8 @@ function createIcsString (props){
     let appointments = props.appointments
     let name = props.name
 
-    const semesterStart = "20211010"
-    const semesterEnd = "20220110"
+    const semesterStart = "20220220"
+    const semesterEnd = "20220611"
 
     let template = `BEGIN:VCALENDAR
 VERSION:2.0

@@ -9,8 +9,8 @@ export class GoogleCal extends React.PureComponent {
     render() {
         let appointment = this.props.appointment
         let name = this.props.name
-        const semesterStart = "20211010"
-        const semesterEnd = "20220110"
+        const semesterStart = "20220220"
+        const semesterEnd = "20220611"
 
         if (appointment == undefined || appointment.start == undefined){
             return (
