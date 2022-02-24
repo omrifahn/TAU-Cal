@@ -80,7 +80,6 @@ export class Table extends React.PureComponent {
         )
     }
 }
-
 export default Table
 
 // {
