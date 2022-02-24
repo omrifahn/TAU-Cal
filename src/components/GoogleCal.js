@@ -31,6 +31,7 @@ export class GoogleCal extends React.PureComponent {
         template += "&text=" + name + " | " + appointment.type
         template += "&location=" + appointment.location + " | " + appointment.room
         template += "&details=" + appointment.directors.map(dir => " " + dir)
+        template += " www.tau-cal.com"
         template += "&recur=RRULE:FREQ=WEEKLY;UNTIL=" + semesterEnd
 
         return(

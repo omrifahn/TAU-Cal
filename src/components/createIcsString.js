@@ -32,7 +32,7 @@ DTEND;TZID=Asia/Jerusalem:${date + "T" + end}
 RRULE:FREQ=WEEKLY;UNTIL=${semesterEnd}
 LOCATION:${ ap.location || ap.room ? ap.location + " | " + ap.room : ""}
 
-DESCRIPTION: ${ap.directors.map(dir => " " + dir)}
+DESCRIPTION: ${ap.directors.map(dir => " " + dir)} www.tau-cal.com
 SEQUENCE:0
 STATUS:CONFIRMED
 SUMMARY:${name + " | " + ap.type}
