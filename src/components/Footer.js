@@ -6,7 +6,7 @@ export class Footer extends React.PureComponent {
     }
 
     render() {
-        let omri =  "https://www.linkedin.com/in/omri-fahn-7b3187177/"
+        let omri =  "https://www.linkedin.com/in/omri-fahn/"
         let ido = "https://www.linkedin.com/in/ido-weins"
         let ron = "https://www.linkedin.com/in/ron-peleg-8175b0173"
 
