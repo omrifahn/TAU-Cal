@@ -20,7 +20,7 @@ export class Table extends React.PureComponent {
     }
 
     apToDayAndHour(ap){
-        let days = ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"]
+        let days = [" ", "א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"]
         if (!ap.start || !ap.end || !ap.day){
             return ""
         }
