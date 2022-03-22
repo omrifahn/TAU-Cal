@@ -19,18 +19,25 @@ export class Table extends React.PureComponent {
         this.setState( {search: value} )
     }
 
-    render() {
+    apToDayAndHour(ap){
+        let days = ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"]
+        if (!ap.start || !ap.end || !ap.day){
+            return ""
+        }
+        return <div>{days[ap.day]}<br/>{ap.start.slice(0, 5)} - {ap.end.slice(0, 5)}</div>
+    }
 
+    render() {
         let courses = this.state.courses
         //the filter below creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
         let filteredCourses = courses.filter( course =>
-            course.appointments[0].semester == 2 &&
+            course.appointments[0].semester === 2 &&
             (course.name + course.id + "-" + course.group + course.appointments[0].directors + course.id.slice(0, 4) + course.id.slice(5,9) + course.group)
                 .replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search)
         );
 
         filteredCourses = filteredCourses.slice(0, 15)
-        if (this.state.search == ''){
+        if (this.state.search === ''){
             filteredCourses = []
         }
 
@@ -48,9 +55,9 @@ export class Table extends React.PureComponent {
                         <th width="100">יבוא למחשב</th>
                         <th width="100">Google Cal</th>
                         <th width="100">iPhone / iPad<br/><small>לחיצה ארוכה על הקוד</small></th>
-                        <th width="150">שם המרצה / מתרגל</th>
+                        <th width="100">יום ושעה</th>
+                        <th width="150">שם המרצה</th>
                         <th width="200">שם הקורס</th>
-                        <th width="100">פקולטה</th>
                         <th width="100">מס׳ קבוצה</th>
                         <th width="100">מס׳ קורס</th>
                     </tr>
@@ -62,9 +69,9 @@ export class Table extends React.PureComponent {
                             <td><Button name={course.name} appointments={course.appointments}/></td>
                             <td>{ course.appointments.map( ap => <GoogleCal name={course.name} appointment={ap}/> ) }</td>
                             <td>{ course.appointments.map( ap => <QrGenerator name={course.name} appointments={[ap]}/> ) }</td>
+                            <td>{ course.appointments.map( ap => this.apToDayAndHour(ap) ) }</td>
                             <td>{course.appointments[0].directors.map(dir => (<div>{dir}</div>))}</td>
                             <td width="150">{course.name}</td>
-                            <td>{course.faculty}</td>
                             <td>{course.group}</td>
                             <td>{course.id}</td>
                         </tr>
