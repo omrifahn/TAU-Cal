@@ -13,6 +13,7 @@ export class Footer extends React.PureComponent {
         return(
             <div>
                 <footer className="footer">
+                    <p>סמסטר א׳ | 2023</p>
                     <p>
                         Created by <a href={omri}>Omri Fahn</a> and wouldn't be possible without the help of <a href={ido}>Ido Weinstein</a> and <a href={ron}>Ron Peleg</a>.
                     </p>
