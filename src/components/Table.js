@@ -45,7 +45,7 @@ export class Table extends React.PureComponent {
             <div>
                 <br/>
                 <br/>
-                <input className="input" placeholder=" מס׳ קורס / שם קורס / שם מתרגל" size="50" onChange={(e) => this.onSearch(e.target.value)}></input>
+                <input className="input" placeholder=" 🔍מס׳ קורס / שם קורס / שם מתרגל🔍" size="50" onChange={(e) => this.onSearch(e.target.value)}></input>
                 <br/>
                 <br/>
                 <br/>
