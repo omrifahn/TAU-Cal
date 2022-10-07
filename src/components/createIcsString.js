@@ -1,11 +1,9 @@
+import ConstsDict from "./Consts";
+import appointmentToCleanVarsDict from "./Utils";
 
 function createIcsString (props){
-
     let appointments = props.appointments
     let name = props.name
-
-    const semesterStart = "20221023"
-    const semesterEnd = "20230123"
 
     let template = `BEGIN:VCALENDAR
 VERSION:2.0
@@ -13,45 +11,32 @@ PRODID:-//bobbin v0.1//NONSGML iCal Writer//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 `
-
     for (let i = 0; i < appointments.length; i++) {
-        let ap = appointments[i]
-        if (ap == undefined || ap.start == undefined){
+        let appointment = appointments[i]
+        if (appointment === undefined || appointment.start === undefined){
             return "No data available"
         }
-
-        let day = ap.day - 1
-        let start = ap.start.slice(0,2) + ap.start.slice(3,5) + ap.start.slice(6,8) //getting rid of ":"
-        let end = ap.end.slice(0,2) + ap.end.slice(3,5) + ap.end.slice(6,8)
-
-        let date = semesterStart.slice(0, 6) + String( parseInt(semesterStart.slice(6, 8)) + day) //first occurrence of appointment
-
+        let cleanVarsDict = appointmentToCleanVarsDict(appointment)
         template += `BEGIN:VEVENT
-DTSTART;TZID=Asia/Jerusalem:${date + "T" + start}
-DTEND;TZID=Asia/Jerusalem:${date + "T" + end}
-RRULE:FREQ=WEEKLY;UNTIL=${semesterEnd}
-LOCATION:${ ap.location || ap.room ? ap.location + " | " + ap.room : ""}
+DTSTART;TZID=Asia/Jerusalem:${cleanVarsDict.date + "T" + cleanVarsDict.start}
+DTEND;TZID=Asia/Jerusalem:${cleanVarsDict.date + "T" + cleanVarsDict.end}
+RRULE:FREQ=WEEKLY;UNTIL=${ConstsDict.semesterLastDay}
+LOCATION:${ appointment.location || appointment.room ? appointment.location + " | " + appointment.room : ""}
 
-DESCRIPTION: ${ap.directors.map(dir => " " + dir)} www.tau-cal.com
+DESCRIPTION: ${appointment.directors.map(dir => " " + dir)} www.tau-cal.com
 SEQUENCE:0
 STATUS:CONFIRMED
-SUMMARY:${name + " | " + ap.type}
+SUMMARY:${name + " | " + appointment.type}
 TRANSP:OPAQUE
 END:VEVENT
 `
     }
-
     template += `END:VCALENDAR`
 
     return template
 }
-
 export default createIcsString
-
-
-
 //not inside:
-
 //DTSTAMP:20091130T213238Z
 // UID:1285935469767a7c7c1a9b3f0df8003a@yoursever.com
 // CREATED:20091130T213238Z
