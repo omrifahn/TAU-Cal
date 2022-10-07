@@ -4,9 +4,9 @@ import QrGenerator from "./QrGenerator";
 import './Table.css'
 import '../courses.json'
 import GoogleCal from "./GoogleCal";
+import ConstsDict from "./Consts";
 
 export class Table extends React.PureComponent {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +15,7 @@ export class Table extends React.PureComponent {
         }
     }
 
-    onSearch(value, newPage){
+    onSearch(value){
         this.setState( {search: value} )
     }
 
@@ -29,9 +29,9 @@ export class Table extends React.PureComponent {
 
     render() {
         let courses = this.state.courses
-        //the filter below creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
+        // the filter below creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
         let filteredCourses = courses.filter( course =>
-            course.appointments[0].semester === 1 &&
+            course.appointments[0].semester === ConstsDict.currentSemester &&
             (course.name + course.id + "-" + course.group + course.appointments[0].directors + course.id.slice(0, 4) + course.id.slice(5,9) + course.group)
                 .replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search)
         );

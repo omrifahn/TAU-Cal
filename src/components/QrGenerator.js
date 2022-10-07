@@ -14,9 +14,8 @@ const QrGenerator = (props) => {
 
     return (
         <div>
-            {text === "No data available" ? <p>שעת המפגש אינה במערכת</p> : <img width="50" height="50" src={src} />}
+            {text === "No data available" ? <p>שעת המפגש אינה במערכת</p> : <img alt={"QR Code"} width="50" height="50" src={src} />}
         </div>
     )
 }
-
 export default QrGenerator
