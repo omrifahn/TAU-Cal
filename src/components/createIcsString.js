@@ -20,7 +20,7 @@ METHOD:PUBLISH
         template += `BEGIN:VEVENT
 DTSTART;TZID=Asia/Jerusalem:${cleanVarsDict.date + "T" + cleanVarsDict.start}
 DTEND;TZID=Asia/Jerusalem:${cleanVarsDict.date + "T" + cleanVarsDict.end}
-RRULE:FREQ=WEEKLY;UNTIL=${ConstsDict.semesterEnd}
+RRULE:FREQ=WEEKLY;UNTIL=${ConstsDict.semesterLastDay}
 LOCATION:${ appointment.location || appointment.room ? appointment.location + " | " + appointment.room : ""}
 
 DESCRIPTION: ${appointment.directors.map(dir => " " + dir)} www.tau-cal.com
