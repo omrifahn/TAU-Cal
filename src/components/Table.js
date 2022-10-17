@@ -45,15 +45,14 @@ export class Table extends React.PureComponent {
             <div>
                 <br/>
                 <br/>
-                <input className="input" placeholder=" 🔍מס׳ קורס / שם קורס / שם מתרגל🔍" size="50" onChange={(e) => this.onSearch(e.target.value)}></input>
+                <input className="input" placeholder=" 🔍מס׳ קורס / שם קורס / שם מתרגל🔍" size="50" onChange={(e) => this.onSearch(e.target.value)}/>
                 <br/>
                 <br/>
                 <br/>
                 <table className="table">
                     <thead>
                     <tr>
-                        <th width="100">יבוא למחשב</th>
-                        <th width="100">Google Cal</th>
+                        <th width="100">Google Cal / ics</th>
                         <th width="100">iPhone / iPad<br/><small>לחיצה ארוכה על הקוד</small></th>
                         <th width="100">יום ושעה</th>
                         <th width="150">שם המרצה</th>
@@ -65,8 +64,7 @@ export class Table extends React.PureComponent {
                     {
                         filteredCourses.map(course => (
                         <tr>
-                            <td><Button name={course.name} appointments={course.appointments}/></td>
-                            <td>{ course.appointments.map( ap => <GoogleCal name={course.name} appointment={ap}/> ) }</td>
+                            <td>{ course.appointments.map( ap => <GoogleCal name={course.name} appointment={ap}/> ) } <Button name={course.name} appointments={course.appointments}/></td>
                             <td>{ course.appointments.map( ap => <QrGenerator name={course.name} appointments={[ap]}/> ) }</td>
                             <td>{ course.appointments.map( ap => this.apToDayAndHour(ap) ) }</td>
                             <td>{course.appointments[0].directors.map(dir => (<div>{dir}</div>))}</td>
