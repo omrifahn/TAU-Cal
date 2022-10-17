@@ -58,7 +58,6 @@ export class Table extends React.PureComponent {
                         <th width="100">יום ושעה</th>
                         <th width="150">שם המרצה</th>
                         <th width="200">שם הקורס</th>
-                        <th width="100">מס׳ קבוצה</th>
                         <th width="100">מס׳ קורס</th>
                     </tr>
                     </thead>
@@ -72,8 +71,7 @@ export class Table extends React.PureComponent {
                             <td>{ course.appointments.map( ap => this.apToDayAndHour(ap) ) }</td>
                             <td>{course.appointments[0].directors.map(dir => (<div>{dir}</div>))}</td>
                             <td width="150">{course.name}</td>
-                            <td>{course.group}</td>
-                            <td>{course.id}</td>
+                            <td>{course.id.slice(0,4)}<br/>{course.id.slice(5,9)}<br/>{course.group}</td>
                         </tr>
                     ))}
                     </tbody>
