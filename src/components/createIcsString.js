@@ -22,8 +22,8 @@ DTSTART;TZID=Asia/Jerusalem:${cleanVarsDict.date + "T" + cleanVarsDict.start}
 DTEND;TZID=Asia/Jerusalem:${cleanVarsDict.date + "T" + cleanVarsDict.end}
 RRULE:FREQ=WEEKLY;UNTIL=${ConstsDict.semesterLastDay}
 LOCATION:${ appointment.location || appointment.room ? appointment.location + " | " + appointment.room : ""}
-
-DESCRIPTION: ${appointment.directors.map(dir => " " + dir)} www.tau-cal.com
+URL:https://www.tau-cal.com
+DESCRIPTION: ${appointment.directors.map(dir => " " + dir)}
 SEQUENCE:0
 STATUS:CONFIRMED
 SUMMARY:${name + " | " + appointment.type}
