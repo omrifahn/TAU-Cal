@@ -29,11 +29,17 @@ export class Table extends React.PureComponent {
 
     render() {
         let courses = this.state.courses
+
         // the filter below creates search string for each course. replace \u00a0 (weird " ") with normal " ". again for replacing another \u00a0.
+
+        // UPDATE:
+        // now courses.json is in hebrew so dont need this ^
+        // the old lsat line was that (i dont know why the same replace is 2 times)
+        // .replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search)
         let filteredCourses = courses.filter( course =>
             course.appointments[0].semester === ConstsDict.currentSemester &&
             (course.name + course.id + "-" + course.group + course.appointments[0].directors + course.id.slice(0, 4) + course.id.slice(5,9) + course.group)
-                .replace('\u00a0', " ").replace('\u00a0', " ").includes(this.state.search)
+                .includes(this.state.search)
         );
 
         filteredCourses = filteredCourses.slice(0, 15)
