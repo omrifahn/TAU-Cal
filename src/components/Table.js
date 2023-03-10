@@ -39,7 +39,7 @@ export class Table extends React.PureComponent {
         let filteredCourses = courses.filter( course =>
             course.appointments[0].semester === ConstsDict.currentSemester &&
             (course.name + course.id + "-" + course.group + course.appointments[0].directors + course.id.slice(0, 4) + course.id.slice(5,9) + course.group)
-                .includes(this.state.search)
+                .toLowerCase().includes(this.state.search.toLowerCase())
         );
 
         filteredCourses = filteredCourses.slice(0, 15)
