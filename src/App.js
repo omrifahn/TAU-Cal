@@ -1,8 +1,8 @@
 import './App.css';
-import CalendarTable from "./components/CalendarTable";
+import CalendarTable from "./components/Calendar_components/CalendarTable";
 import Footer from "./components/Footer";
 import Tabs from "./components/Tabs";
-import FreeRoomsFinder from "./components/FreeRoomsFinder";
+import FreeRoomsFinder from "./components/rooms_finder_components/FreeRoomsFinder";
 
 function App() {
   return (

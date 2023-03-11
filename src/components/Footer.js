@@ -1,5 +1,5 @@
 import React from "react";
-import ConstsDict from "./Consts";
+import ConstsDict from "./Calendar_components/Consts";
 
 export class Footer extends React.PureComponent {
     render() {

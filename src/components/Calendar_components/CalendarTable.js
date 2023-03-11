@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import QrGenerator from "./QrGenerator";
 import './Table.css'
-import '../courses.json'
+import '../../courses.json'
 import GoogleCal from "./GoogleCal";
 import ConstsDict from "./Consts";
 
@@ -11,7 +11,7 @@ export class CalendarTable extends React.PureComponent {
         super(props);
         this.state = {
             search:'',
-            courses: require('../courses.json')
+            courses: require('../../courses.json')
         }
     }
 
