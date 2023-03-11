@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import QrGenerator from "./QrGenerator";
-import './Table.css'
+import './CalendarTable.css'
 import '../../courses.json'
 import GoogleCal from "./GoogleCal";
 import ConstsDict from "./Consts";
@@ -80,6 +80,12 @@ export class CalendarTable extends React.PureComponent {
                     ))}
                     </tbody>
                 </table>
+                {
+                    (filteredCourses.length > 0) ? <div><br/><br/></div> : <div>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    </div>
+                }
+
             </div>
         )
     }

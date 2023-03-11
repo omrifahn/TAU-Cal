@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
 import RoomsList from "./RoomsList";
 import { green } from '@material-ui/core/colors';
 
@@ -30,10 +29,12 @@ const FreeRoomsFinder = () => {
 
     const handleDayChange = (event) => {
         setSelectedDay(event.target.value);
+        findFreeRooms();
     };
 
     const handleHourChange = (event) => {
         setSelectedHour(event.target.value);
+        findFreeRooms();
     };
 
     const findFreeRooms = () => {
@@ -77,14 +78,16 @@ const FreeRoomsFinder = () => {
                         <MenuItem value={hour}>{hour}:00 - {hour + 1}:00</MenuItem>
                     ))}
                 </Select>
+
             </FormControl>
 
-            <br/>
-            <Button variant="contained" className={classes.button} style={{backgroundColor: '#3fb58e', color: 'white'}} onClick={findFreeRooms}>
-                מצא חדר פנוי
-            </Button>
-
             <RoomsList freeRooms={freeRooms} />
+
+            {
+                (freeRooms.length > 0) ? <div><br/><br/></div> : <div>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+            }
 
         </div>
     );

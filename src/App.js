@@ -8,11 +8,11 @@ function App() {
   return (
     <div className="App">
         <Tabs>
-            <div label="חדרים פנויים">
+            <div label="מצא חדר פנוי">
                 <FreeRoomsFinder />
             </div>
 
-            <div label="חיפוש קורסים">
+            <div label="הכנסת קורסים ללוח שנה">
                 <CalendarTable />
             </div>
         </Tabs>
