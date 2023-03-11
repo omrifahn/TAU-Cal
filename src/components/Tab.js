@@ -9,18 +9,18 @@ const TabItem = styled.li`
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
-  color: #555;
+  color: #3fb58e;
   cursor: pointer;
   border-bottom: 2px solid transparent;
+  border-radius: 25px;
 
   &:hover {
-    border-bottom: 2px solid #555;
   }
 
   &.tab-list-active {
-    border-bottom: 2px solid #555;
     color: #fff;
     background-color: #3fb58e;
+    border-radius: 25px;
   }
 `;
 
