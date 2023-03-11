@@ -6,11 +6,19 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import RoomsList from "./RoomsList";
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
+    },
+    button: {
+        backgroundColor: green[500],
+        color: 'white',
+        '&:hover': {
+            backgroundColor: green[700],
+        },
     },
 }));
 
@@ -66,16 +74,20 @@ const FreeRoomsFinder = () => {
                     {Array.from({ length: 12 }, (_, i) => i + 8).map(hour => (
                         <MenuItem value={hour}>{hour}:00 - {hour + 1}:00</MenuItem>
                     ))}
+
                 </Select>
             </FormControl>
-            <Button variant="contained" color="" onClick={findFreeRooms}>
+            <Button variant="contained" className={classes.button} style={{backgroundColor: '#3fb58e', color: 'white'}} onClick={findFreeRooms}>
                 Find Free Rooms
             </Button>
 
             <RoomsList freeRooms={freeRooms} />
-
         </div>
     );
 };
 
 export default FreeRoomsFinder;
+
+
+
+
