@@ -6,7 +6,7 @@ import '../courses.json'
 import GoogleCal from "./GoogleCal";
 import ConstsDict from "./Consts";
 
-export class Table extends React.PureComponent {
+export class CalendarTable extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -84,7 +84,7 @@ export class Table extends React.PureComponent {
         )
     }
 }
-export default Table
+export default CalendarTable
 
 // {
 //     'id': '0366-2010',

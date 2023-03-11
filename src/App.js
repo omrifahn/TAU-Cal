@@ -1,5 +1,5 @@
 import './App.css';
-import Table from "./components/Table";
+import CalendarTable from "./components/CalendarTable";
 import Footer from "./components/Footer";
 import Tabs from "./components/Tabs";
 
@@ -12,7 +12,7 @@ function App() {
             </div>
 
             <div label="חיפוש קורסים">
-                <Table />
+                <CalendarTable />
             </div>
         </Tabs>
 
