@@ -80,11 +80,6 @@ export class Table extends React.PureComponent {
                     ))}
                     </tbody>
                 </table>
-                {
-                    (filteredCourses.length > 0) ? <div><br/><br/></div> : <div>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    </div>
-                }
             </div>
         )
     }
