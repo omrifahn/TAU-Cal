@@ -10,7 +10,6 @@ export class Footer extends React.PureComponent {
         return(
             <div>
                 <footer className="footer">
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
                     <p>סמסטר {ConstsDict.currentSemester === 1 ? "א" : "ב"}׳ | {ConstsDict.semesterLastDay.slice(0,4)}</p>
                     <p>

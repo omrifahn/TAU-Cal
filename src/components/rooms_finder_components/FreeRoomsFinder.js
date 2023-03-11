@@ -58,11 +58,11 @@ const FreeRoomsFinder = () => {
                     value={selectedDay}
                     onChange={handleDayChange}
                 >
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={1}>א׳</MenuItem>
+                    <MenuItem value={2}>ב׳</MenuItem>
+                    <MenuItem value={3}>ג׳</MenuItem>
+                    <MenuItem value={4}>ד׳</MenuItem>
+                    <MenuItem value={5}>ה׳</MenuItem>
                 </Select>
             </FormControl>
 
@@ -79,6 +79,7 @@ const FreeRoomsFinder = () => {
                 </Select>
             </FormControl>
 
+            <br/>
             <Button variant="contained" className={classes.button} style={{backgroundColor: '#3fb58e', color: 'white'}} onClick={findFreeRooms}>
                 מצא חדר פנוי
             </Button>
