@@ -83,19 +83,13 @@ const FreeRoomsFinder = () => {
             </FormControl>
 
             <RoomsList freeRooms={freeRooms} />
-
             {
                 (freeRooms.length > 0) ? <div><br/><br/></div> : <div>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 </div>
             }
-
         </div>
     );
 };
 
 export default FreeRoomsFinder;
-
-
-
-
