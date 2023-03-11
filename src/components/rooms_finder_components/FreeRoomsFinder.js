@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { green } from '@material-ui/core/colors';
+import {Fab} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -25,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 const FreeRoomsFinder = () => {
     const classes = useStyles();
     const [selectedDay, setSelectedDay] = useState(1);
-    const [selectedHour, setSelectedHour] = useState(8);
+    const [selectedStartTime, setStartTime] = useState(8);
+    const [selectedEndTime, setEndTime] = useState(9);
     const [freeRooms, setFreeRooms] = useState([]);
 
     const handleDayChange = (event) => {
@@ -33,8 +35,13 @@ const FreeRoomsFinder = () => {
         findFreeRooms();
     };
 
-    const handleHourChange = (event) => {
-        setSelectedHour(event.target.value);
+    const handleStartTimeChange = (event) => {
+        setStartTime(event.target.value);
+        findFreeRooms();
+    };
+
+    const handleEndTimeChange = (event) => {
+        setEndTime(event.target.value);
         findFreeRooms();
     };
 
@@ -42,7 +49,14 @@ const FreeRoomsFinder = () => {
         const freeRooms = [];
         for (const location in data) {
             for (const room in data[location]) {
-                if (data[location][room][selectedDay][selectedHour]) {
+                let isRoomFree = true;
+                for (let i = selectedStartTime; i < selectedEndTime; i++) {
+                    if (!data[location][room][selectedDay][i]) {
+                        isRoomFree = false;
+                        break;
+                    }
+                }
+                if (isRoomFree) {
                     freeRooms.push({ location, room });
                 }
             }
@@ -51,8 +65,7 @@ const FreeRoomsFinder = () => {
     };
 
     return (
-        <div style={{direction: 'rtl'}}>
-
+    <div style={{direction: 'rtl'}}>
             <FormControl className={classes.formControl}>
                 <label htmlFor="day-select">יום:</label>
                 <Select
@@ -68,18 +81,30 @@ const FreeRoomsFinder = () => {
                 </Select>
             </FormControl>
 
-            <FormControl className={classes.formControl}>
-                <label htmlFor="hour-select">שעה:</label>
+            <FormControl className={classes.formControl} >
+                <label htmlFor="start-time-select">משעה:</label>
                 <Select
-                    id="hour-select"
-                    value={selectedHour}
-                    onChange={handleHourChange}
+                    id="start-time-select"
+                    value={selectedStartTime}
+                    onChange={handleStartTimeChange}
                 >
                     {Array.from({ length: 12 }, (_, i) => i + 8).map(hour => (
-                        <MenuItem value={hour}>{hour}:00 - {hour + 1}:00</MenuItem>
+                        <MenuItem value={hour}>{hour}:00</MenuItem>
                     ))}
                 </Select>
+            </FormControl>
 
+            <FormControl className={classes.formControl}>
+                <label htmlFor="end-time-select">עד שעה:</label>
+                <Select
+                    id="end-time-select"
+                    value={selectedEndTime}
+                    onChange={handleEndTimeChange}
+                >
+                    {Array.from({ length: 12 }, (_, i) => i + 9).filter(hour => hour > selectedStartTime).map(hour => (
+                        <MenuItem value={hour}>{hour}:00</MenuItem>
+                    ))}
+                </Select>
             </FormControl>
 
             <RoomsList freeRooms={freeRooms} />
