@@ -49,9 +49,10 @@ const FreeRoomsFinder = () => {
     };
 
     return (
-        <div>
+        <div style={{direction: 'rtl'}}>
+
             <FormControl className={classes.formControl}>
-                <label htmlFor="day-select">Day:</label>
+                <label htmlFor="day-select">יום:</label>
                 <Select
                     id="day-select"
                     value={selectedDay}
@@ -64,8 +65,9 @@ const FreeRoomsFinder = () => {
                     <MenuItem value={5}>5</MenuItem>
                 </Select>
             </FormControl>
+
             <FormControl className={classes.formControl}>
-                <label htmlFor="hour-select">Hour:</label>
+                <label htmlFor="hour-select">שעה:</label>
                 <Select
                     id="hour-select"
                     value={selectedHour}
@@ -74,14 +76,15 @@ const FreeRoomsFinder = () => {
                     {Array.from({ length: 12 }, (_, i) => i + 8).map(hour => (
                         <MenuItem value={hour}>{hour}:00 - {hour + 1}:00</MenuItem>
                     ))}
-
                 </Select>
             </FormControl>
+
             <Button variant="contained" className={classes.button} style={{backgroundColor: '#3fb58e', color: 'white'}} onClick={findFreeRooms}>
-                Find Free Rooms
+                מצא חדר פנוי
             </Button>
 
             <RoomsList freeRooms={freeRooms} />
+
         </div>
     );
 };
