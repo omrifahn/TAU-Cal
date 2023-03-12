@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { green } from '@material-ui/core/colors';
+import {Button} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -25,29 +26,42 @@ const useStyles = makeStyles((theme) => ({
 const FreeRoomsFinder = () => {
     const classes = useStyles();
     const [selectedDay, setSelectedDay] = useState(1);
-    const [selectedHour, setSelectedHour] = useState(8);
+    const [startHour, setStartHour] = useState(8);
+    const [endHour, setEndHour] = useState(9);
     const [freeRooms, setFreeRooms] = useState([]);
+
 
     const handleDayChange = (event) => {
         setSelectedDay(event.target.value);
-        findFreeRooms();
     };
 
-    const handleHourChange = (event) => {
-        setSelectedHour(event.target.value);
-        findFreeRooms();
+    const handleStartHourChange = (event) => {
+        setStartHour(event.target.value);
     };
 
-    const findFreeRooms = () => {
-        const freeRooms = [];
+    const handleEndHourChange = (event) => {
+        setEndHour(event.target.value);
+    };
+
+    const handleSendButtonClick = () => {
+        setFreeRooms([]);
+        const filteredFreeRooms = [];
         for (const location in data) {
             for (const room in data[location]) {
-                if (data[location][room][selectedDay][selectedHour]) {
-                    freeRooms.push({ location, room });
+                let isFree = false;
+                for (let i = startHour; i < endHour; i++) {
+                    isFree = true;
+                    if (!data[location][room][selectedDay][i]) {
+                        isFree = false;
+                        break;
+                    }
+                }
+                if (isFree) {
+                    filteredFreeRooms.push({ location, room });
                 }
             }
         }
-        setFreeRooms(freeRooms);
+        setFreeRooms(filteredFreeRooms);
     };
 
     return (
@@ -69,37 +83,58 @@ const FreeRoomsFinder = () => {
             </FormControl>
 
             <FormControl className={classes.formControl} >
-                <label htmlFor="hour-select">שעה:</label>
+                <label htmlFor="start-hour-select">משעה:</label>
                 <Select
-                    id="hour-select"
-                    value={selectedHour}
-                    onChange={handleHourChange}
+                    id="start-hour-select"
+                    value={startHour}
+                    onChange={handleStartHourChange}
                     style={{direction: 'ltr'}}
                 >
-                    <MenuItem value={8}>08:00 - 09:00</MenuItem>
-                    <MenuItem value={9}>09:00 - 10:00</MenuItem>
-                    <MenuItem value={10}>10:00 - 11:00</MenuItem>
-                    <MenuItem value={11}>11:00 - 12:00</MenuItem>
-                    <MenuItem value={12}>12:00 - 13:00</MenuItem>
-                    <MenuItem value={13}>13:00 - 14:00</MenuItem>
-                    <MenuItem value={14}>14:00 - 15:00</MenuItem>
-                    <MenuItem value={15}>15:00 - 16:00</MenuItem>
-                    <MenuItem value={16}>16:00 - 17:00</MenuItem>
-                    <MenuItem value={17}>17:00 - 18:00</MenuItem>
-                    <MenuItem value={18}>18:00 - 19:00</MenuItem>
-                    <MenuItem value={19}>19:00 - 20:00</MenuItem>
+                    <MenuItem value={8}>08:00</MenuItem>
+                    <MenuItem value={9}>09:00 </MenuItem>
+                    <MenuItem value={10}>10:00</MenuItem>
+                    <MenuItem value={11}>11:00</MenuItem>
+                    <MenuItem value={12}>12:00</MenuItem>
+                    <MenuItem value={13}>13:00</MenuItem>
+                    <MenuItem value={14}>14:00</MenuItem>
+                    <MenuItem value={15}>15:00</MenuItem>
+                    <MenuItem value={16}>16:00</MenuItem>
+                    <MenuItem value={17}>17:00</MenuItem>
+                    <MenuItem value={18}>18:00</MenuItem>
+                    <MenuItem value={19}>19:00</MenuItem>
                 </Select>
-
             </FormControl>
 
+            <FormControl className={classes.formControl} >
+                <label htmlFor="end-hour-select">עד שעה:</label>
+                <Select
+                    id="end-hour-select"
+                    value={endHour}
+                    onChange={handleEndHourChange}
+                    style={{direction: 'ltr'}}
+                >
+                    <MenuItem value={9}>09:00</MenuItem>
+                    <MenuItem value={10}>10:00</MenuItem>
+                    <MenuItem value={11}>11:00</MenuItem>
+                    <MenuItem value={12}>12:00</MenuItem>
+                    <MenuItem value={13}>13:00</MenuItem>
+                    <MenuItem value={14}>14:00</MenuItem>
+                    <MenuItem value={15}>15:00</MenuItem>
+                    <MenuItem value={16}>16:00</MenuItem>
+                    <MenuItem value={17}>17:00</MenuItem>
+                    <MenuItem value={18}>18:00</MenuItem>
+                    <MenuItem value={19}>19:00</MenuItem>
+                    <MenuItem value={20}>20:00</MenuItem>
+                </Select>
+            </FormControl>
+
+            <Button variant="contained" color="primary" onClick={handleSendButtonClick}>
+                שלח
+            </Button>
+
             <RoomsList freeRooms={freeRooms} />
-            {
-                (freeRooms.length > 0) ? <div><br/><br/></div> : <div>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                </div>
-            }
+
         </div>
     );
 };
-
 export default FreeRoomsFinder;
