@@ -12,13 +12,15 @@ import {Button} from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 120,
+        minWidth: 100,
+        width: 'auto',
     },
     button: {
-        backgroundColor: green[500],
+        backgroundColor: "#3fb58e",
         color: 'white',
+        borderRadius: '25px',
         '&:hover': {
-            backgroundColor: green[700],
+            backgroundColor: "#3fb58e",
         },
     },
 }));
@@ -128,12 +130,17 @@ const FreeRoomsFinder = () => {
                 </Select>
             </FormControl>
 
-            <Button variant="contained" color="primary" onClick={handleSendButtonClick}>
+            <br/>
+            <Button variant="contained" className={classes.button} onClick={handleSendButtonClick}>
                 שלח
             </Button>
 
             <RoomsList freeRooms={freeRooms} />
-
+            {
+                (freeRooms.length > 0) ? <div><br/><br/></div> : <div>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                </div>
+            }
         </div>
     );
 };
