@@ -1,7 +1,7 @@
 import React from "react";
 import createIcsString from "./createIcsString";
 
-export class Button extends React.PureComponent {
+export class IcsFileButton extends React.PureComponent {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -11,7 +11,7 @@ export class Button extends React.PureComponent {
         const element = document.createElement("a");
         const file = new Blob([createIcsString(this.props)]);
         element.href = URL.createObjectURL(file);
-        element.download = "myFile.ics";
+        element.download = "TAU-Cal.ics";
         element.click();
     }
 
@@ -25,4 +25,4 @@ export class Button extends React.PureComponent {
     )}
 }
 
-export default Button
+export default IcsFileButton

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import IcsFileButton from "./IcsFileButton";
 import QrGenerator from "./QrGenerator";
 import './CalendarTable.css'
 import '../../courses.json'
@@ -70,7 +70,7 @@ export class CalendarTable extends React.PureComponent {
                     {
                         filteredCourses.map(course => (
                         <tr>
-                            <td>{ course.appointments.map( ap => <GoogleCal name={course.name} appointment={ap}/> ) } <Button name={course.name} appointments={course.appointments}/></td>
+                            <td>{ course.appointments.map( ap => <GoogleCal name={course.name} appointment={ap}/> ) } <IcsFileButton name={course.name} appointments={course.appointments}/></td>
                             <td>{ course.appointments.map( ap => <QrGenerator name={course.name} appointments={[ap]}/> ) }</td>
                             <td>{ course.appointments.map( ap => this.apToDayAndHour(ap) ) }</td>
                             <td>{course.appointments[0].directors.map(dir => (<div>{dir}</div>))}</td>
