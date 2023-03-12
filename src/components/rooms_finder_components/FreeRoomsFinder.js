@@ -12,10 +12,8 @@ import {Fab} from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 100,
-        width: 'auto',
+        minWidth: 120,
     },
-
     button: {
         backgroundColor: green[500],
         color: 'white',
