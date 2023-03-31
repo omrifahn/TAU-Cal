@@ -15,7 +15,8 @@ export class Footer extends React.PureComponent {
 
                     <p>סמסטר {ConstsDict.currentSemester === 1 ? "א" : "ב"}׳ | {ConstsDict.semesterLastDay.slice(0,4)}</p>
                     <p>
-                        Created by <a href={omri}>Omri Fahn</a> and wouldn't be possible without the help of <a href={ido}>Ido Weinstein</a>, <a href={ron}>Ron Peleg</a>, <a href={gilad}>Gilad Shacham</a> and our beloved <a href={GPT4}>GPT-4</a>.
+                        Created by <a href={omri}>Omri Fahn</a> and wouldn't be possible without the help of <br/>
+                        <a href={ido}>Ido Weinstein</a>, <a href={ron}>Ron Peleg</a>, <a href={gilad}>Gilad Shacham</a> and our beloved <a href={GPT4}>GPT-4</a>.
                     </p>
                     <p>TAU-Cal © {ConstsDict.semesterLastDay.slice(0,4)}</p>
                 </footer >
@@ -23,4 +24,3 @@ export class Footer extends React.PureComponent {
         )}
 }
 export default Footer
-
