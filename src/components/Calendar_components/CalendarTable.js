@@ -11,7 +11,8 @@ export class CalendarTable extends React.PureComponent {
         super(props);
         this.state = {
             search:'',
-            courses: require('../../courses.json')
+            courses: require('../../courses.json'),
+            protest: require('../../protest.json')
         }
     }
 
@@ -44,7 +45,7 @@ export class CalendarTable extends React.PureComponent {
 
         filteredCourses = filteredCourses.slice(0, 15)
         if (this.state.search === ''){
-            filteredCourses = []
+            filteredCourses = [this.state.protest[0]]
         }
 
         return (
@@ -80,12 +81,7 @@ export class CalendarTable extends React.PureComponent {
                     ))}
                     </tbody>
                 </table>
-                {
-                    (filteredCourses.length > 0) ? <div><br/><br/></div> : <div>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    </div>
-                }
-
+                <div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
             </div>
         )
     }

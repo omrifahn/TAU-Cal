@@ -1,0 +1,28 @@
+[
+  {
+  "id": "1312",
+  "group": "1312",
+  "name": "! ישראל לא תהיה דיקטטורה !",
+  "notes": "",
+  "faculty": "דמוקרטיה",
+  "track": "דמוקרטיה",
+  "complete": true,
+  "appointments": [
+    {
+      "directors": ["קפלן"],
+      "type": "Event",
+      "location": "רחוב קפלן",
+      "room": "1",
+      "day": 7,
+      "start": "19:00:00",
+      "end": "21:00:00",
+      "semester": "1"
+    }
+  ],
+  "links": {
+    "Event Info": "N/A"
+  },
+  "special_instruction": false,
+  "special_instruction_text": ""
+}
+]
