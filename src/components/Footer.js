@@ -12,7 +12,6 @@ export class Footer extends React.PureComponent {
         return(
             <div>
                 <footer className="footer">
-                    <img src={'/protest6.jpg'} alt="protest" style={{ width: "65%", height: 'auto' }} />
 
                     <p>סמסטר {ConstsDict.currentSemester === 1 ? "א" : "ב"}׳ | {ConstsDict.semesterLastDay.slice(0,4)}</p>
                     <p>
