@@ -4,31 +4,29 @@ import google from './google_cal_icon.png';
 import ConstsDict from "./Consts";
 import appointmentToCleanVarsDict from "./Utils";
 
-class GoogleCal extends React.PureComponent {
+export class GoogleCal extends React.PureComponent {
     render() {
-        const { appointment, name } = this.props;
-
-        if (!appointment || !appointment.start) {
+        let appointment = this.props.appointment;
+        let name = this.props.name;
+        if (appointment === undefined || appointment.start === undefined) {
             return (
                 <div>
                     <p>שעת המפגש אינה במערכת</p>
                 </div>
             );
         }
+        let cleanVarsDict = appointmentToCleanVarsDict(appointment);
 
-        const cleanVarsDict = appointmentToCleanVarsDict(appointment);
+        // Format the semester last day
+        const semesterLastDay = `${ConstsDict.semesterLastDay.year}${ConstsDict.semesterLastDay.month}${ConstsDict.semesterLastDay.day}T000000Z`;
 
-        // Reconstruct semesterLastDay
-        const semesterLastDay = `${ConstsDict.semesterLastDayYear}${ConstsDict.semesterLastDayMonth}${ConstsDict.semesterLastDayDay}`;
-
-        // Build the Google Calendar event URL
-        let template = "https://calendar.google.com/calendar/u/0/r/eventedit?";
-        template += `dates=${cleanVarsDict.date}T${cleanVarsDict.startTime}/${cleanVarsDict.date}T${cleanVarsDict.endTime}`;
-        template += `&text=${encodeURIComponent(`${name} | ${appointment.type}`)}`;
-        template += `&location=${encodeURIComponent(`${appointment.location} | ${appointment.room}`)}`;
-        const details = appointment.directors ? appointment.directors.join(", ") : "";
-        template += `&details=${encodeURIComponent(details + " www.tau-cal.com")}`;
-        template += `&recur=RRULE:FREQ=WEEKLY;UNTIL=${semesterLastDay}`;
+        let template = "https://calendar.google.com/calendar/u/0/r/eventedit?dates=";
+        template += cleanVarsDict.date + "T" + cleanVarsDict.start + "/";
+        template += cleanVarsDict.date + "T" + cleanVarsDict.end;
+        template += "&text=" + encodeURIComponent(name + " | " + appointment.type);
+        template += "&location=" + encodeURIComponent(appointment.location + " | " + appointment.room);
+        template += "&details=" + encodeURIComponent(appointment.directors.join(", ") + " www.tau-cal.com");
+        template += "&recur=RRULE:FREQ=WEEKLY;UNTIL=" + semesterLastDay;
 
         return (
             <div>

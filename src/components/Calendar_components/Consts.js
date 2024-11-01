@@ -1,14 +1,16 @@
 // Consts.js
 const ConstsDict = {
     currentSemester: 1,
-    // first day
-    semesterFirstDayYear: "2024",
-    semesterFirstDayMonth: "11",
-    semesterFirstDayDay: "03",
-    // last day
-    semesterLastDayYear: "2025",
-    semesterLastDayMonth: "02",
-    semesterLastDayDay: "02"
+    semesterFirstDay: {
+        year: "2024",
+        month: "11",
+        day: "03"
+    },
+    semesterLastDay: {
+        year: "2025",
+        month: "02",
+        day: "02"
+    }
 };
 
 export default ConstsDict;
