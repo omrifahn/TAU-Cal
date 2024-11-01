@@ -1,4 +1,3 @@
-// GoogleCal.js
 import React from "react";
 import google from './google_cal_icon.png';
 import ConstsDict from "./Consts";
@@ -16,7 +15,6 @@ export class GoogleCal extends React.PureComponent {
             );
         }
         let cleanVarsDict = appointmentToCleanVarsDict(appointment);
-
         // Format the semester last day
         const semesterLastDay = `${ConstsDict.semesterLastDay.year}${ConstsDict.semesterLastDay.month}${ConstsDict.semesterLastDay.day}T000000Z`;
 
@@ -37,5 +35,4 @@ export class GoogleCal extends React.PureComponent {
         );
     }
 }
-
 export default GoogleCal;

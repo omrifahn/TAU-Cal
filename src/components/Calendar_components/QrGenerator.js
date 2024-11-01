@@ -22,5 +22,4 @@ const QrGenerator = (props) => {
         </div>
     );
 };
-
 export default QrGenerator;

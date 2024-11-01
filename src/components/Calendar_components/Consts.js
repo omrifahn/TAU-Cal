@@ -1,4 +1,3 @@
-// Consts.js
 const ConstsDict = {
     currentSemester: 1,
     semesterFirstDay: {
