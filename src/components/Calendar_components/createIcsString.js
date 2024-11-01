@@ -1,3 +1,4 @@
+// createIcsString.js
 import ConstsDict from "./Consts";
 import appointmentToCleanVarsDict from "./Utils";
 
@@ -8,9 +9,11 @@ function createIcsString(props) {
     // Format the semester last day
     const semesterLastDay = `${ConstsDict.semesterLastDay.year}${ConstsDict.semesterLastDay.month}${ConstsDict.semesterLastDay.day}T000000Z`;
 
-    let template = `BEGIN:VCALENDAR
+    const semesterLastDay = `${ConstsDict.semesterLastDayYear}${ConstsDict.semesterLastDayMonth}${ConstsDict.semesterLastDayDay}T000000Z`;
+
+    let icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//bobbin v0.1//NONSGML iCal Writer//EN
+PRODID:-//TAU-Cal//NONSGML iCal Writer//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 `;
@@ -29,7 +32,7 @@ URL:https://www.tau-cal.com
 DESCRIPTION:${appointment.directors.map(dir => " " + dir)}
 SEQUENCE:0
 STATUS:CONFIRMED
-SUMMARY:${name + " | " + appointment.type}
+SUMMARY:${name} | ${appointment.type}
 TRANSP:OPAQUE
 END:VEVENT
 `;

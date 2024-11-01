@@ -1,3 +1,4 @@
+// Utils.js
 import ConstsDict from "./Consts";
 
 function appointmentToCleanVarsDict(appointment) {
