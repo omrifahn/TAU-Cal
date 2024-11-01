@@ -1,16 +1,31 @@
+// Utils.js
 import ConstsDict from "./Consts";
 
-function appointmentToCleanVarsDict (appointment) {
-    let cleanVarsDict = {}
-    cleanVarsDict["day"] = appointment.day - 1
-    cleanVarsDict["start"] = appointment.start.slice(0,2) + appointment.start.slice(3,5) + appointment.start.slice(6,8) //getting rid of ":"
-    cleanVarsDict["end"] = appointment.end.slice(0,2) + appointment.end.slice(3,5) + appointment.end.slice(6,8) //getting rid of ":"
+function appointmentToCleanVarsDict(appointment) {
+    const cleanVarsDict = {};
 
-    let semesterFirstDayYYYYMM = ConstsDict.semesterFirstDay.slice(0, 6)
-    let semesterFirstDayDD= ConstsDict.semesterFirstDay.slice(6, 8)
-    let firstDayOfAppointment = String( parseInt(semesterFirstDayDD) + cleanVarsDict.day )
-    cleanVarsDict["date"] = semesterFirstDayYYYYMM + firstDayOfAppointment
+    const startTime = appointment.start.replace(/:/g, "");
+    const endTime = appointment.end.replace(/:/g, "");
+
+    const semesterFirstDate = new Date(
+        parseInt(ConstsDict.semesterFirstDayYear),
+        parseInt(ConstsDict.semesterFirstDayMonth) - 1,
+        parseInt(ConstsDict.semesterFirstDayDay)
+    );
+
+    const appointmentDate = new Date(semesterFirstDate);
+    appointmentDate.setDate(semesterFirstDate.getDate() + (appointment.day - 1));
+
+    const year = appointmentDate.getFullYear().toString();
+    const month = (appointmentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = appointmentDate.getDate().toString().padStart(2, '0');
+    const date = year + month + day;
+
+    cleanVarsDict["date"] = date;
+    cleanVarsDict["startTime"] = startTime;
+    cleanVarsDict["endTime"] = endTime;
 
     return cleanVarsDict;
 }
+
 export default appointmentToCleanVarsDict;

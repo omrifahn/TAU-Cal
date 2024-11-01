@@ -1,41 +1,55 @@
+// createIcsString.js
 import ConstsDict from "./Consts";
 import appointmentToCleanVarsDict from "./Utils";
 
-function createIcsString (props){
-    let appointments = props.appointments
-    let name = props.name
+function createIcsString(props) {
+    const { appointments, name } = props;
 
-    let template = `BEGIN:VCALENDAR
+    const semesterLastDay = `${ConstsDict.semesterLastDayYear}${ConstsDict.semesterLastDayMonth}${ConstsDict.semesterLastDayDay}T000000Z`;
+
+    let icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//bobbin v0.1//NONSGML iCal Writer//EN
+PRODID:-//TAU-Cal//NONSGML iCal Writer//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-`
-    for (let i = 0; i < appointments.length; i++) {
-        let appointment = appointments[i]
-        if (appointment === undefined || appointment.start === undefined){
-            return "No data available"
+`;
+
+    for (const appointment of appointments) {
+        if (!appointment || !appointment.start) {
+            continue;
         }
-        let cleanVarsDict = appointmentToCleanVarsDict(appointment)
-        template += `BEGIN:VEVENT
-DTSTART;TZID=Asia/Jerusalem:${cleanVarsDict.date + "T" + cleanVarsDict.start}
-DTEND;TZID=Asia/Jerusalem:${cleanVarsDict.date + "T" + cleanVarsDict.end}
-RRULE:FREQ=WEEKLY;UNTIL=${ConstsDict.semesterLastDay}
-LOCATION:${ appointment.location || appointment.room ? appointment.location + " | " + appointment.room : ""}
+
+        const cleanVarsDict = appointmentToCleanVarsDict(appointment);
+
+        const location = appointment.location || appointment.room
+            ? `${appointment.location} | ${appointment.room}`
+            : "";
+
+        const description = appointment.directors
+            ? appointment.directors.join(", ")
+            : "";
+
+        icsContent += `BEGIN:VEVENT
+DTSTART;TZID=Asia/Jerusalem:${cleanVarsDict.date}T${cleanVarsDict.startTime}
+DTEND;TZID=Asia/Jerusalem:${cleanVarsDict.date}T${cleanVarsDict.endTime}
+RRULE:FREQ=WEEKLY;UNTIL=${semesterLastDay}
+LOCATION:${location}
 URL:https://www.tau-cal.com
-DESCRIPTION: ${appointment.directors.map(dir => " " + dir)}
+DESCRIPTION:${description}
 SEQUENCE:0
 STATUS:CONFIRMED
-SUMMARY:${name + " | " + appointment.type}
+SUMMARY:${name} | ${appointment.type}
 TRANSP:OPAQUE
 END:VEVENT
-`
+`;
     }
-    template += `END:VCALENDAR`
 
-    return template
+    icsContent += `END:VCALENDAR`;
+
+    return icsContent;
 }
-export default createIcsString
+
+export default createIcsString;
 //not inside:
 //DTSTAMP:20091130T213238Z
 // UID:1285935469767a7c7c1a9b3f0df8003a@yoursever.com

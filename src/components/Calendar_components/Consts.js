@@ -1,7 +1,14 @@
+// Consts.js
 const ConstsDict = {
     currentSemester: 1,
-    semesterFirstDay : "20241103",
-    semesterLastDay : "20250202"
-}// todo - separate to SemFirstDay.DD SemFirstDay.MM SemFirstDay.YY
+    // first day
+    semesterFirstDayYear: "2024",
+    semesterFirstDayMonth: "11",
+    semesterFirstDayDay: "03",
+    // last day
+    semesterLastDayYear: "2025",
+    semesterLastDayMonth: "02",
+    semesterLastDayDay: "02"
+};
 
 export default ConstsDict;

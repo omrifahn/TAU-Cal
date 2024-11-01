@@ -1,28 +1,22 @@
+// IcsFileButton.js
 import React from "react";
 import createIcsString from "./createIcsString";
 
-export class IcsFileButton extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick() {
-        const element = document.createElement("a");
-        const file = new Blob([createIcsString(this.props)]);
-        element.href = URL.createObjectURL(file);
-        element.download = "TAU-Cal.ics";
-        element.click();
-    }
+class IcsFileButton extends React.PureComponent {
+    handleClick = () => {
+        const icsContent = createIcsString(this.props);
+        const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "TAU-Cal.ics";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     render() {
-
-        return(
-            <div>
-                <button onClick={this.handleClick}>.ics</button>
-            </div>
-
-    )}
+        return <button onClick={this.handleClick}>Download .ics</button>;
+    }
 }
 
-export default IcsFileButton
+export default IcsFileButton;
