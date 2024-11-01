@@ -1,16 +1,29 @@
 import ConstsDict from "./Consts";
 
-function appointmentToCleanVarsDict (appointment) {
-    let cleanVarsDict = {}
-    cleanVarsDict["day"] = appointment.day - 1
-    cleanVarsDict["start"] = appointment.start.slice(0,2) + appointment.start.slice(3,5) + appointment.start.slice(6,8) //getting rid of ":"
-    cleanVarsDict["end"] = appointment.end.slice(0,2) + appointment.end.slice(3,5) + appointment.end.slice(6,8) //getting rid of ":"
+function appointmentToCleanVarsDict(appointment) {
+    let cleanVarsDict = {};
 
-    let semesterFirstDayYYYYMM = ConstsDict.semesterFirstDay.slice(0, 6)
-    let semesterFirstDayDD= ConstsDict.semesterFirstDay.slice(6, 8)
-    let firstDayOfAppointment = String( parseInt(semesterFirstDayDD) + cleanVarsDict.day )
-    cleanVarsDict["date"] = semesterFirstDayYYYYMM + firstDayOfAppointment
+    // Remove colons from time strings
+    cleanVarsDict["start"] = appointment.start.replace(/:/g, '');
+    cleanVarsDict["end"] = appointment.end.replace(/:/g, '');
+
+    // Parse the semester first day
+    let semesterFirstDay = new Date(
+        `${ConstsDict.semesterFirstDay.year}-${ConstsDict.semesterFirstDay.month}-${ConstsDict.semesterFirstDay.day}`
+    );
+
+    // Calculate the appointment date
+    let appointmentDate = new Date(semesterFirstDay);
+    appointmentDate.setDate(appointmentDate.getDate() + (appointment.day - 1));
+
+    // Format the date components with leading zeros
+    let year = appointmentDate.getFullYear();
+    let month = String(appointmentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    let day = String(appointmentDate.getDate()).padStart(2, '0');
+
+    cleanVarsDict["date"] = `${year}${month}${day}`;
 
     return cleanVarsDict;
 }
+
 export default appointmentToCleanVarsDict;

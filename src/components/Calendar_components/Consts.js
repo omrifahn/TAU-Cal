@@ -1,7 +1,15 @@
 const ConstsDict = {
     currentSemester: 1,
-    semesterFirstDay : "20241103",
-    semesterLastDay : "20250202"
-}// todo - separate to SemFirstDay.DD SemFirstDay.MM SemFirstDay.YY
+    semesterFirstDay: {
+        year: "2024",
+        month: "11",
+        day: "03"
+    },
+    semesterLastDay: {
+        year: "2025",
+        month: "02",
+        day: "02"
+    }
+};
 
 export default ConstsDict;
