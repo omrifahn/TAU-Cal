@@ -1,13 +1,13 @@
 const ConstsDict = {
-    currentSemester: 1,
+    currentSemester: 2,
     semesterFirstDay: {
-        year: "2024",
-        month: "11",
-        day: "03"
+        year: "2025",
+        month: "03",
+        day: "17"
     },
     semesterLastDay: {
         year: "2025",
-        month: "02",
+        month: "07",
         day: "02"
     }
 };
