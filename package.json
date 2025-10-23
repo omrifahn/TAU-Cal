@@ -18,8 +18,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "prebuild": "node -e \"require('fs').writeFileSync('.env', 'REACT_APP_BUILD_TIME=' + new Date().toISOString())\"",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "preview": "npm run build && npx serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
