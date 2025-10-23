@@ -1,9 +1,6 @@
 import React from "react";
 import ConstsDict from "./Calendar_components/Consts";
 
-// Build timestamp - automatically updated at build time
-const BUILD_TIME = new Date().toISOString().slice(0, 16).replace('T', ' ');
-
 export class Footer extends React.PureComponent {
     render() {
         let omri = "https://www.linkedin.com/in/omri-fahn/";
@@ -25,7 +22,6 @@ export class Footer extends React.PureComponent {
                         <a href={gilad}>Gilad Shacham</a> and our beloved <a href={GPT4}>GPT-4</a>.
                     </p>
                     <p>TAU-Cal © {ConstsDict.semesterLastDay.year}</p>
-                    <p className="build-watermark">{BUILD_TIME}</p>
                 </footer>
             </div>
         );
