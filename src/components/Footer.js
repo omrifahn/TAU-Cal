@@ -22,7 +22,6 @@ export class Footer extends React.PureComponent {
                         <a href={gilad}>Gilad Shacham</a> and our beloved <a href={GPT4}>GPT-4</a>.
                     </p>
                     <p>TAU-Cal © {ConstsDict.semesterLastDay.year}</p>
-                    <p className="build-watermark">2025-10-23 17:44</p>
                 </footer>
             </div>
         );
