@@ -11,11 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
-.build-watermark {
-  font-size: 7px;
-  color: #ccc;
-  opacity: 0.4;
-  margin-top: 5px;
-}

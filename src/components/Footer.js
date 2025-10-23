@@ -9,10 +9,6 @@ export class Footer extends React.PureComponent {
         let gilad = "https://www.linkedin.com/in/gilad-shacham/";
         let GPT4 = "https://openai.com/product/gpt-4";
 
-        const buildTime = process.env.REACT_APP_BUILD_TIME || new Date().toISOString();
-        const buildDate = buildTime.slice(0, 10);
-        const buildHour = buildTime.slice(11, 16);
-
         return (
             <div>
                 <footer className="footer">
@@ -26,7 +22,6 @@ export class Footer extends React.PureComponent {
                         <a href={gilad}>Gilad Shacham</a> and our beloved <a href={GPT4}>GPT-4</a>.
                     </p>
                     <p>TAU-Cal © {ConstsDict.semesterLastDay.year}</p>
-                    <p className="build-watermark">Last Update: {buildDate} {buildHour}</p>
                 </footer>
             </div>
         );
