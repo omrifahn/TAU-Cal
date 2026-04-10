@@ -1,6 +1,5 @@
 import React from "react";
 import ConstsDict from "./Calendar_components/Consts";
-import buildInfo from "../buildInfo.json";
 
 export class Footer extends React.PureComponent {
     render() {
@@ -23,9 +22,11 @@ export class Footer extends React.PureComponent {
                         <a href={gilad}>Gilad Shacham</a> and our beloved <a href={GPT4}>GPT-4</a>.
                     </p>
                     <p>TAU-Cal © {ConstsDict.semesterLastDay.year}</p>
-                    <p className="build-watermark">
-                        Build: {new Date(buildInfo.commitDate).toLocaleString("he-IL")}
-                    </p>
+                    {process.env.REACT_APP_LAST_COMMIT_DATE && (
+                        <p className="build-watermark">
+                            Last updated: {new Date(process.env.REACT_APP_LAST_COMMIT_DATE).toLocaleString("en-GB")}
+                        </p>
+                    )}
                 </footer>
             </div>
         );
