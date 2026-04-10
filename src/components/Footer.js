@@ -22,6 +22,11 @@ export class Footer extends React.PureComponent {
                         <a href={gilad}>Gilad Shacham</a> and our beloved <a href={GPT4}>GPT-4</a>.
                     </p>
                     <p>TAU-Cal © {ConstsDict.semesterLastDay.year}</p>
+                    {process.env.REACT_APP_LAST_COMMIT_DATE && (
+                        <p className="build-watermark">
+                            Last updated: {new Date(process.env.REACT_APP_LAST_COMMIT_DATE).toLocaleString("en-GB")}
+                        </p>
+                    )}
                 </footer>
             </div>
         );

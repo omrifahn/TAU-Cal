@@ -36,3 +36,8 @@ input{
 footer{
     color: grey;
 }
+
+.build-watermark{
+    opacity: 0.1;
+    font-size: 0.75em;
+}
